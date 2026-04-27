@@ -194,8 +194,31 @@ doSwap:
         #    y+=2; 
         # }
 
-        # TODO: fill in the assembly code here:
+        li $t0, 0
+        li $t1, 1
+        li $t2, 11
+        la $t4, myArray
+swap:
+        bge $t0, $t2, finished
 
+        sll $t5, $t0, 2
+        addu $t5, $t5, $t4
+
+        lw $t7, 0($t5)
+
+        sll $a1, $t1, 2
+        addu $a1, $a1, $t4
+
+        lw $a2, 0($a1)
+
+        sw $t7, 0($a1)
+        sw $a2, 0($t5)
+
+        addiu $t0, $t0, 2
+        addiu $t1, $t1, 2
+
+        j swap
+        # TODO: fill in the assembly code here:
 
 finished:
         # do ___NOT___ remove this last line
